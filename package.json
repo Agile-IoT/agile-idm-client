@@ -1,0 +1,33 @@
+{
+  "name": "agile-idm-client",
+  "version": "1.0.0",
+  "repository": "https://github.com/Agile-IoT/agile-idm-client",
+  "description": "Generic Identity Management for the IoT (Clients)",
+  "main": "main.js",
+  "directories": {
+    "test": "tests"
+  },
+  "dependencies": {
+    "clone": "1.0.2",
+    "dbus-native": "0.2.0",
+    "request": "2.x"
+  },
+  "devDependencies": {
+    "mocha": "2.4.5",
+    "deep-diff": "0.3.3",
+    "assert": "1.4.1"
+  },
+  "scripts": {
+    "test": "mocha tests/*.js"
+  },
+  "keywords": [
+    "Identity",
+    "Management",
+    "Internet",
+    "of",
+    "Things",
+    "Gateway"
+  ],
+  "author": "nopbyte",
+  "license": "Apache-2.0"
+}
