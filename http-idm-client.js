@@ -22,7 +22,7 @@ HTTPIDMClient.prototype.authenticateEntityPromisse = function(token){
     };
 
     var promisse = new Promise((resolve, reject) => {
-        request.get(options,function(onAuthenticationFinished, error, response, body){
+        request.get(options,function( error, response, body){
           if(!error && response.statusCode == 200){
             return resolve (result);
           }
@@ -35,7 +35,7 @@ HTTPIDMClient.prototype.authenticateEntityPromisse = function(token){
          else{
             return reject(new Error(JSON.stringify(error)));
         }
-        }.bind(this,onAuthenticationFinished));
+      });
     });
     return promisse;
 }
