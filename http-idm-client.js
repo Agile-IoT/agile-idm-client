@@ -2,9 +2,8 @@
 const  request  = require('request');
 
 var HTTPIDMClient = function (configuration) {
-
-   if(configuration && configuration !=null){
-     this.url = configuration["web-server"];
+   if(configuration  && configuration.hasOwnProperty("authentication") && configuration.authentication.hasOwnProperty("web-server")){
+     this.url = configuration.authentication["web-server"];
    }
    else{
 	    console.error("cannot find configuration for identity mangement http client");
@@ -22,15 +21,20 @@ HTTPIDMClient.prototype.authenticateEntityPromisse = function(token){
     };
 
     var promisse = new Promise((resolve, reject) => {
+
         request.get(options,function( error, response, body){
           if(!error && response.statusCode == 200){
-            return resolve (result);
+              try{
+                return resolve (JSON.parse(body));
+              }catch(error){
+                  reject(error);
+              }
           }
           else if(!error){
             if(response.statusCode == 401)
                 return reject(new Error("bad credentials for authentication"));
             else
-                return reject(new Error("wrong satus code from authentication: "+response.statusCode+" error "+ body));
+                return reject(new Error("wrong satus code from remote AGILE webserver  for authentication: "+response.statusCode+" error "+ body));
          }
          else{
             return reject(new Error(JSON.stringify(error)));
