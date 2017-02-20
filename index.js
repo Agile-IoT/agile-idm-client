@@ -1,7 +1,4 @@
-var http = require('./http-idm-client');
-var dbus = require('./dbus-session-client');
-
+var http = require('./lib/http-idm-client');
 module.exports = {
-    http: http,
-    dbus: dbus
-}
+    httpClient: http
+};
